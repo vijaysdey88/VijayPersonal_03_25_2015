@@ -103,7 +103,7 @@ public class BinarySearchTree<K extends Comparable<K>, V>  {
 		return size(root);
 	}
 	
-	public int size(K key) {
+	protected int size(K key) {
 		Node<K,V> node = get(key, root);
 		return size(node);
 	}
