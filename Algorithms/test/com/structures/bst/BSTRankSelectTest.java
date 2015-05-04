@@ -73,6 +73,15 @@ public class BSTRankSelectTest extends BSTTestBasis {
 	}
 	
 	@Test
+	public void randkShouldReturnZeroWhenNoSmallerKeysPresent() {
+		newBST();
+		insertKeys(10, 5, 1, 15, 20, 12);
+		
+		Assert.assertEquals(0, bst.rank(0));
+		Assert.assertEquals(0, bst.rank(1));
+	}
+	
+	@Test
 	public void sizeOfBottommostSubtreeShouldBeThree() {
 		//Assert.assertEquals(3, bst.size(4));
 		//Assert.assertEquals(3, bst.size(18));

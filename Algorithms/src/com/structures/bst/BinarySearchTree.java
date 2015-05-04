@@ -229,4 +229,9 @@ public class BinarySearchTree<K extends Comparable<K>, V>  {
 		queue.add(node.key);
 		insertInQueue(node.right, queue);
 	}
+
+	public int rangeCount(K start, K end) {
+		
+		return 0;
+	}
 }
