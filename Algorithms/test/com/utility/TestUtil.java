@@ -1,4 +1,4 @@
-package com.structures.bst;
+package com.utility;
 
 public class TestUtil {
 

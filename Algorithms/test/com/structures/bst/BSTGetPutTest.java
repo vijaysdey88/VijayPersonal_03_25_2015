@@ -3,9 +3,11 @@ package com.structures.bst;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class BSTGetPutTest {
+import com.utility.TestUtil;
 
-	private BinarySearchTree<Integer, Integer> bst = new BinarySearchTree<Integer, Integer>();
+
+public class BSTGetPutTest extends BSTTestBasis {
+
 
 	@Test
 	public void putShouldInsertFirstElementAtTheRoot() {
@@ -51,18 +53,4 @@ public class BSTGetPutTest {
 		insertKeys(keys);
 		Assert.assertNull(bst.get(123));
 	}
-
-
-	private void insertKeys(Integer[] keys) {
-		for (Integer key : keys) {
-			bst.put(key, TestUtil.computeValue(key));
-		}
-	}
-
-	private void assertRetrievingValues(Integer[] keys) {
-		for (Integer key : keys) {
-			Assert.assertEquals(TestUtil.computeValue(key), bst.get(key));
-		}
-	}
-
 }
