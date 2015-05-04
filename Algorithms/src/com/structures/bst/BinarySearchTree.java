@@ -230,8 +230,10 @@ public class BinarySearchTree<K extends Comparable<K>, V>  {
 		insertInQueue(node.right, queue);
 	}
 
-	public int rangeCount(K start, K end) {
-		
-		return 0;
+	public int rangeCount(K lo, K hi) {
+		if (null != get(lo))
+			return rank(lo) - rank(hi) + 1;
+		else
+			return rank(lo) - rank(hi);
 	}
 }
