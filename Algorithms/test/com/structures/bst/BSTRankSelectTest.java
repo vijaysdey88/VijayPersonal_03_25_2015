@@ -48,7 +48,7 @@ public class BSTRankSelectTest extends BSTTestBasis {
 	}
 	
 	@Test
-	public void rankForKeyGreaterThanRootIsSumAllSmallerKeys() {
+	public void rankForKeyGreaterThanRootIsSumAllSmallerKeysWhenFound() {
 		newBST();
 		insertKeys(10, 5, 1, 15);
 		
@@ -61,6 +61,15 @@ public class BSTRankSelectTest extends BSTTestBasis {
 	
 		insertKeys(18);
 		Assert.assertEquals( 6, bst.rank(15));
+	}
+	
+	@Test
+	public void rankForKeyGreaterThanRootIsSumAllSmallerKeysWhenNotFound() {
+		newBST();
+		insertKeys(10, 5, 1, 15, 20, 12);
+		
+		Assert.assertEquals( 6, bst.rank(21));
+		Assert.assertEquals( 4, bst.rank(15));
 	}
 	
 	@Test

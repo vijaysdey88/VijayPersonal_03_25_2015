@@ -204,6 +204,7 @@ public class BinarySearchTree<K extends Comparable<K>, V>  {
 	}
 
 	private int rank(Node<K, V> node, K key) {
+		if(null == node) return 0;
 		int c = compare(key, node.key);
 		if(c == 0) {
 			return size(node.left);

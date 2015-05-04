@@ -1,1 +1,14 @@
 *.class
+
+#Eclipse setting files
+*/.classpath
+*/.project
+*/.settings/
+
+#Junk file
+RemoteSystemsTempFiles/
+.DS_Store
+.metadata/
+*/target/
+
+
