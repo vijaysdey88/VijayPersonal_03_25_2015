@@ -1,0 +1,51 @@
+* Other languages alternative of JS which provide type safety
+	> DART by Google
+	> Compile to JS - Google GWT
+	> Coffeescript
+
+* JS - mvc layer at client side since processing power has increased on client side
+* IOT - internet of things
+* console.dir(obj) - prints hierarchy
+* Two implicit parameters of js - 
+	1. this
+	2. arguments
+* In functional programming function can be used as 'DATA', passed/returned
+* Six types of invocation patterns in Javascript. 
+	reference- Invocation patterns - Taylor 
+	McGann
+
+	function myFun() {
+	}
+	1. Directly - myFun()
+	2. On object as a Method - obj = { x:10, fun:myFun}
+				   obj.myFun()
+	3. Self invoked (IIFE-Immediately invoked function expression) 	
+					(function(){console.log('self invoked')})();
+	4. Function Constructor
+		function Employee(name, age) {
+	   	 	this.a = 10;
+	   	 	return "hello";
+		}
+		var f1 = new Employee();
+	5. call(obj, param...) 
+	6  apply(obj, [])
+	* Call and apply help save the memory
+	Ex
+	function sayHi(endingNote) {
+    	console.log("Hi!" + this.name + " " + endingNote);
+	}
+	var vijay = {name:"Vijay Dey"}
+	sayHi.call(vijay, "dude!!!");
+	sayHi.apply(vijay, ["dude!!!"]);
+	
+* JS is loosely typed
+* Higher Order Function (HOF) - evernote.com
+
+* Find truthy a = +a
+* Why higher order functions - pass on behavior
+* Revealing pattern - choose what we want to return from a outer function
+
+Day 3 
+* Java class based inheritance, inheritance at template level
+* Prototypical inheritance - properties of child is summation of its own property and parents
+* typeof vs instanceof
