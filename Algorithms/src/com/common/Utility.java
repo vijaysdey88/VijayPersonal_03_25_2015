@@ -10,6 +10,23 @@ public class Utility {
 		return first.compareTo(second) > 0;
 	}
 
+	public static <T extends Comparable<T>> boolean lessThan(T first, T second) {
+		return first.compareTo(second) < 0;
+	}
+	
+	public static <T extends Comparable<T>> boolean greaterThanEqualTo(T first, T second) {
+		return first.compareTo(second) >= 0;
+	}
+
+	public static <T extends Comparable<T>> boolean lessThanEqualTo(T first, T second) {
+		return first.compareTo(second) <= 0;
+	}
+	
+	public static <T extends Comparable<T>> boolean between(T lo, T hi, T value) {
+		return lessThanEqualTo(lo, value) && greaterThanEqualTo(hi, value);
+	}
+	
+	
 	public static <T extends Comparable<T>> boolean equals(T first, T second) {
 		return first.compareTo(second) == 0;
 	}

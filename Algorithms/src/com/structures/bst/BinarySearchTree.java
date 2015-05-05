@@ -1,9 +1,14 @@
 package com.structures.bst;
 
+import static com.common.Utility.between;
 import static com.common.Utility.compare;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
+
+import com.common.Utility;
+import com.google.common.collect.Lists;
 
 public class BinarySearchTree<K extends Comparable<K>, V>  {
 	private Node<K, V> root;
@@ -235,5 +240,34 @@ public class BinarySearchTree<K extends Comparable<K>, V>  {
 			return rank(lo) - rank(hi) + 1;
 		else
 			return rank(lo) - rank(hi);
+	}
+
+	public List<K> rangeSearch(K lo, K hi) {
+		List<K> inRangeKeys = Lists.newArrayList();
+		rangeSearch(root, inRangeKeys, lo, hi);
+		return inRangeKeys;
+	}
+
+	private void rangeSearch(Node<K, V> node, List<K> inRangeKeys, K lo, K hi) {
+		if(null == node) {
+			return;
+		}
+		if(lessThanEqualTo(lo, node.left)) {
+			rangeSearch(node.left, inRangeKeys, lo, hi);
+		}
+		if(between(lo, hi, node.key)) {
+			inRangeKeys.add(node.key);
+		}
+		if(greaterThanEqualTo(hi, node.right)) {
+			rangeSearch(node.right, inRangeKeys, lo, hi);
+		}
+	}
+
+	private boolean lessThanEqualTo(K lo, Node<K, V> node) {
+		return (null != node) && Utility.lessThanEqualTo(lo, node.key);
+	}
+	
+	private boolean greaterThanEqualTo(K hi, Node<K, V> node) {
+		return (null != node) && Utility.greaterThanEqualTo(hi, node.key);
 	}
 }
