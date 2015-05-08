@@ -1,6 +1,10 @@
 package com.structures.bst;
 
-import static com.utility.TestUtil.*;
+import static com.utility.TestUtil.computeValue;
+
+import java.util.Arrays;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang.math.RandomUtils;
 import org.junit.Assert;
@@ -91,11 +95,10 @@ public class RBBSTGetInsertTest {
 
 	@Test
 	public void testGetPutForRandomKeys() {
-		Integer[] keys = new Integer[50];
-		for (int i = 0; i < keys.length; i++) {
-			keys[i] = RandomUtils.nextInt();
-		}
+		Random random = new Random();
+		Integer[] keys = random.ints(50).boxed().toArray(Integer[]::new);
 		insertKeys(keys);
+		
 		assertRetrievingValues(keys);
 	}
 
@@ -112,15 +115,13 @@ public class RBBSTGetInsertTest {
 	}
 
 	private void insertKeys(Integer... keys) {
-		for (Integer key : keys) {
-			bst.put(key, TestUtil.computeValue(key));
-		}
+		Arrays.stream(keys)
+		      .forEach(key -> bst.put(key, TestUtil.computeValue(key)));
 	}
 
 	private void assertRetrievingValues(Integer... keys) {
-		for (Integer key : keys) {
-			Assert.assertEquals("Key not found " + key, TestUtil.computeValue(key), bst.get(key));
-		}
+		Arrays.stream(keys)
+			  .forEach(key -> Assert.assertEquals("Key not found " + key, TestUtil.computeValue(key), bst.get(key)));
 	}
 
 }

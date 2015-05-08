@@ -9,8 +9,13 @@ public class LamdasScopes {
 
 	@Test
 	public void lamdasCanAccessNonFinalLocalVarsThatAreEffectivelyFinal() {
-		Adder<Integer> adderWithOffset = create(10);
+		int offset = 10;
+		Adder<Integer> adderWithOffset = (i1, i2) ->  {
+			// offset++; //Can't modify with lambda
+			return i1 + i2 + offset;
+		};
 
+		//offset++; Can't modify var enclosed by lambda
 		System.out.println(adderWithOffset.add(2, 3));
 	}
 
@@ -44,24 +49,11 @@ public class LamdasScopes {
 	public void cantAccessDefaultInterfaceMethods() {
 		InterfaceWithDefault impl = () -> {
 			String msg = "";
-			// msg += sayHi(); can't access defaul interface methods
+			// msg += sayHi(); can't access default interface methods
 			msg += " blah blah";
 			return msg;
 		};
 
 		System.out.println(impl.message());
 	}
-
-	private Adder<Integer> create(int offset) {
-
-		Adder<Integer> adder = (i1, i2) -> {
-			// offset++; Can't modify with lambda
-			return offset + i1 + i2;
-		};
-
-		// Can't modify var enclosed by lambda
-		// i++;
-		return adder;
-	}
-
 }

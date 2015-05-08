@@ -1,6 +1,8 @@
 package com.structures.bst;
 
 import java.util.List;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -42,15 +44,9 @@ public class BSTDeletionTest extends BSTTestBasis {
 	public void deleteMinShouldRectifySizes() {
 		insertKeys(10, 5, 15, 25, 13, 11);
 
-		bst.deleteMin();
-		assertSizesAtExveryNode(Lists.newArrayList(10, 15, 25, 13, 11), Lists.newArrayList(5, 4, 1, 2, 1));
-	}
-
-	private void assertSizesAtExveryNode(List<Integer> keys, List<Integer> expectedSizes) {
-		for (int i = 0; i < keys.size(); i++) {
-			Assert.assertEquals("Incorrect size for key " + keys.get(i), expectedSizes.get(i).intValue(), bst.size(keys.get(i)));
-		}
-
+		bst.deleteMin(); 
+		
+		assertSizesAtEveryNode(Lists.newArrayList(10, 15, 25, 13, 11), Lists.newArrayList(5, 4, 1, 2, 1));
 	}
 
 	@Test
@@ -117,9 +113,17 @@ public class BSTDeletionTest extends BSTTestBasis {
 		bst.delete(5);
 
 		Assert.assertEquals(10, bst.size());
-		assertSizesAtExveryNode(Lists.newArrayList(10, 15, 3, 8, 12, 17, 20, 1, 6, 9), Lists.newArrayList(10, 4, 2, 2, 1, 2, 1, 1, 5, 1));
+		assertSizesAtEveryNode(Lists.newArrayList(10, 15, 3, 8, 12, 17, 20, 1, 6, 9), Lists.newArrayList(10, 4, 2, 2, 1, 2, 1, 1, 5, 1));
 	}
 
+	private void assertSizesAtEveryNode(List<Integer> keys, List<Integer> expectedSizes) {
+		IntStream.iterate(0, i -> i++)
+				 .limit(keys.size())
+				 .forEach(i -> {
+						Assert.assertEquals("Incorrect size for key " + keys.get(i), expectedSizes.get(i).intValue(), bst.size(keys.get(i)));
+				  });
+	}
+	
 	private void notExists(int key) {
 		Assert.assertNull(bst.get(key));
 	}

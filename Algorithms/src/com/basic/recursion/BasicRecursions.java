@@ -1,7 +1,6 @@
 package com.basic.recursion;
 
 
-
 public class BasicRecursions {
 
 	/**
@@ -18,7 +17,6 @@ public class BasicRecursions {
 
 	static int[] fib(int len) {
 		int[] output = new int[len];
-
 		for (int i = 0; i < output.length; i++) {
 			System.out.println("Computing fib(" + i + ")");
 			output[i] = fibRecursively(i);

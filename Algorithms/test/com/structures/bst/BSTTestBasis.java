@@ -1,6 +1,8 @@
 package com.structures.bst;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import org.junit.Assert;
 
@@ -14,20 +16,23 @@ public abstract class BSTTestBasis {
 	}
 	
 	protected void insertKeys(Integer... keys) {
-		for (Integer key : keys) {
-			bst.put(key, TestUtil.computeValue(key));
-		}
+		Arrays.stream(keys)
+			  .forEach(key -> {
+				  bst.put(key, TestUtil.computeValue(key));
+			  });
 	}
 
 	protected void assertRetrievingValues(List<Integer> keys) {
-		for (Integer key : keys) {
-			Assert.assertEquals("Key not found " + key, TestUtil.computeValue(key), bst.get(key));
-		}
+		keys.stream()
+			.forEach(key -> {
+				Assert.assertEquals("Key not found " + key, TestUtil.computeValue(key), bst.get(key));
+			});
 	}
 
 	protected void assertRetrievingValues(Integer... keys) {
-		for (Integer key : keys) {
-			Assert.assertEquals("Key not found " + key, TestUtil.computeValue(key), bst.get(key));
-		}
+		Arrays.stream(keys)
+			   .forEach(key -> {
+				   Assert.assertEquals("Key not found " + key, TestUtil.computeValue(key), bst.get(key));
+			   });
 	}
 }

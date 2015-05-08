@@ -1,6 +1,7 @@
 package com.structures.bst;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -23,8 +24,7 @@ public class BSTRangeTest extends BSTTestBasis {
 		Assert.assertEquals(5, bst.rangeCount(22, 9));
 		Assert.assertEquals(2, bst.rangeCount(22, 16));
 
-		Assert.assertEquals("Should return zero for out of range", 0,
-				bst.rangeCount(22, 25));
+		Assert.assertEquals("Should return zero for out of range", 0, bst.rangeCount(22, 25));
 	}
 
 	@Test
@@ -64,8 +64,8 @@ public class BSTRangeTest extends BSTTestBasis {
 
 	private void assertKeysInRange(List<Integer> keys, Integer... expected) {
 		Assert.assertEquals(expected.length, keys.size());
-		for (int i = 0; i < expected.length; i++) {
-			Assert.assertEquals(expected[i], keys.get(i));
-		}
+		IntStream.iterate(0, i -> i++)
+				 .limit(expected.length)
+				 .forEach(i -> Assert.assertEquals(expected[i], keys.get(i)));
 	}
 }
