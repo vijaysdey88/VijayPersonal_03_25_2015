@@ -12,7 +12,7 @@ import org.junit.Test;
 import com.study.model.fixtures.PersonFixture;
 import com.study.models.Person;
 
-public class StreamCollectors {
+public class CollectorBasics {
 	
 	private List<Person> persons;
 	
