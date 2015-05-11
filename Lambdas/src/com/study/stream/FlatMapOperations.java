@@ -16,12 +16,10 @@ public class FlatMapOperations {
 		Stream<Library> libStream = IntStream.range(1, 6)
 											 .mapToObj(i -> new Library("Lib" + i))
 											 .peek(lib -> IntStream.range(1, 4)
-													 				.mapToObj(i -> new Person((lib.name + "p" + i), i*10))
+													 				.mapToObj(i -> new Person((lib.name + "-person" + i), i*10))
 													 				.forEach(lib::addPerson));
 		libStream.flatMap(lib -> lib.persons.stream())
-				 .forEach(System.out::println);
-				 
-
+				 .forEach(l -> System.out.println(l.getName()));
 	}
 
 	private class Library {
