@@ -41,4 +41,34 @@ private List<Person> persons;
 								.reduce(new Person("", 0), accumulator);
 		System.out.println(reduced);
 	}
+	
+	@Test
+	public void combineMultipleParallelResultsUsingCombiner() {
+		BinaryOperator<Person> accumulator = (p1, p2) -> {
+			System.out.println("Accumulator : " + p1 + " > " +p2 );
+			p1.setName(p1.getName() + p2.getName());
+			p1.setAge(p1.getAge() + p2.getAge());
+			return p1;
+		};
+		
+		BinaryOperator<Person> combiner = (p1, p2) -> {
+			System.out.println("Combiner : " + p1 + " > " +p2 );
+			p1.setName(p1.getName() + p2.getName());
+			p1.setAge(p1.getAge() + p2.getAge());
+			return p1;
+		};
+		
+		System.out.println("Sequential result...");
+		System.out.println(persons
+								.stream()
+								.reduce(new Person("",0), accumulator, combiner)
+				);
+		
+		System.out.println("Parallel result...");
+		System.out.println(persons
+								.parallelStream()
+								.reduce(new Person("",0), accumulator, combiner)
+				);
+		
+	}
 }
