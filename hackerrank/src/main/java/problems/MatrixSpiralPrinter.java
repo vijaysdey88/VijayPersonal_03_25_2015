@@ -1,7 +1,10 @@
 package problems;
 
-public class MatrixSpiralPrinter {
+import java.util.stream.IntStream;
 
+
+public class MatrixSpiralPrinter {
+	
 	public String print(int[][] input) {
 		StringBuilder sb = new StringBuilder();
 		int x1 = 0, y1 = 0, x2 = input.length - 1, y2 = input[0].length - 1;
@@ -26,32 +29,30 @@ public class MatrixSpiralPrinter {
 	}
 
 	private void printTopRow(int[][] input, StringBuilder sb, int x1, int y1, int y2) {
-		for (int i = y1; i <= y2; i++) {
-			sb.append(input[x1][i])
-			  .append(" ");
-		}
+		IntStream.rangeClosed(y1, y2)
+		 		 .forEach(i -> appendCell(input, sb, x1, i));
+	}
+	
+	private void printRigthColumn(int[][] input, StringBuilder sb, int x1, int x2, int y2) {
+		IntStream.rangeClosed(x1 + 1, x2) 
+				  .forEach(i -> appendCell(input, sb, i, y2));
 	}
 	
 	private void printBottomRow(int[][] input, StringBuilder sb, int y1, int x2, int y2) {
 		for (int i = (y2 - 1); i >= y1; i--) {
-			sb.append(input[x2][i])
-			  .append(" ");
+			appendCell(input, sb, x2, i);
 		}
 	}
 	
 	private void printLeftColumn(int[][] input, StringBuilder sb, int x1, int y1, int x2) {
 		for (int i = (x2 - 1); i > x1; i--) {
-			sb.append(input[i][y1])
-			  .append(" ");
+			appendCell(input, sb, i, y1);
 		}
 	}
 
 	
-
-	private void printRigthColumn(int[][] input, StringBuilder sb, int x1, int x2, int y2) {
-		for (int i = (x1 + 1); i <= x2; i++) {
-			sb.append(input[i][y2])
-			  .append(" ");
-		}
+	private void appendCell(int[][] input, StringBuilder sb, int x, int y) {
+		 sb.append(input[x][y])
+		   .append(" ");
 	}
 }
