@@ -20,10 +20,10 @@ public class MatrixSpiralPrinter {
 	protected void printCornerPoints(int[][] input, StringBuilder sb, int x1, int y1, int x2, int y2) {
 		printTopRow(input, sb, x1, y1, y2);
 		printRigthColumn(input, sb, x1, x2, y2);
-		if (x2 > x1) {
+		if (printOnlyOneRow(x1, x2)) {
 			printBottomRow(input, sb, y1, x2, y2);
 		}
-		if (y2 > y1) {
+		if (printOnlyOneColumn(y1, y2)) {
 			printLeftColumn(input, sb, x1, y1, x2);
 		}
 	}
@@ -45,11 +45,18 @@ public class MatrixSpiralPrinter {
 	}
 	
 	private void printLeftColumn(int[][] input, StringBuilder sb, int x1, int y1, int x2) {
-		for (int i = (x2 - 1); i > x1; i--) {
+		for (int i = (x2 - 1); printOnlyOneColumn(x1, i); i--) {
 			appendCell(input, sb, i, y1);
 		}
 	}
 
+	private boolean printOnlyOneColumn(int y1, int y2) {
+		return y2 > y1;
+	}
+
+	private boolean printOnlyOneRow(int x1, int x2) {
+		return printOnlyOneColumn(x1, x2);
+	}
 	
 	private void appendCell(int[][] input, StringBuilder sb, int x, int y) {
 		 sb.append(input[x][y])
