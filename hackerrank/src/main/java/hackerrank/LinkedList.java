@@ -1,5 +1,6 @@
 package hackerrank;
 
+
 public class LinkedList {
 	Node head;
 	
@@ -19,15 +20,18 @@ public class LinkedList {
 	
 	public int getNodeFromFront(int n) {
 		Node node = head;
-		
+		Node found = getNodeFromFront(n, node);
+		if(found == null) 
+			throw new IndexOutOfBoundsException("Index invalid - " + n); 
+		return found.data;
+	}
+
+	Node getNodeFromFront(int n, Node node) {
 		while(n > 0 && node != null) {
 			node = node.next;
 			--n;
 		}
-		
-		if(node == null) 
-				throw new IndexOutOfBoundsException("Index invalid - " + n); 
-		return node.data;
+		return node;
 	}
 	
 	/*
@@ -123,5 +127,36 @@ public class LinkedList {
 		}
 	}
 
+	public Node RemoveDuplicates(Node head) {
+		removeDuplicatesRecursively(head);
+		return head;
+		
+	}
+
+	private void removeDuplicatesRecursively(Node node) {
+		if (node == null || node.next == null) {
+			return;
+		}
+		if (node.data == node.next.data) {
+			node.next = node.next.next;
+			removeDuplicatesRecursively(node);
+		} else {
+			removeDuplicatesRecursively(node.next);
+		}
+	}
+	
+	int HasCycle(Node head) {
+		Node slow = head;
+		Node fast = head == null ? null : head.next;
+		
+		while(slow != null && fast != null && fast.next!=null) {
+			if(slow == fast)
+				return 1;
+			slow = slow.next;
+			fast = fast.next.next;
+		}
+		
+		return 0;
+	}
 
 }
