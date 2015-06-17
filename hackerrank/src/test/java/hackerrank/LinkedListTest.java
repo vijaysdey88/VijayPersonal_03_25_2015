@@ -230,4 +230,25 @@ public class LinkedListTest {
 		Assert.assertEquals(1, list.HasCycle(list.head));
 	}
 	
+	@Test
+	public void lengthShouldReturnNumberOfNodesInList() {
+		createEmptyList();
+		Assert.assertEquals(0, LinkedList.length(list.head));
+		
+		addElementsToList(6);
+		Assert.assertEquals(6, LinkedList.length(list.head));
+	}
+	
+	
+	@Test
+	public void shouldFindMergePointOfTwoLists() {
+		addElementsToList(5);
+		Node mergePoint = list.head.next.next; //2
+		LinkedList listB = new LinkedList();
+		listB.head = mergePoint;
+		
+		//Assert.assertEquals(2, LinkedList.FindMergeNode(list.head, listB.head));
+		Assert.assertEquals(2, LinkedList.FindMergeNode(listB.head, list.head));
+	}
+	
 }

@@ -159,4 +159,37 @@ public class LinkedList {
 		return 0;
 	}
 
+	public static int FindMergeNode(Node headA, Node headB){
+		int lenA = length(headA);
+		int lenB = length(headB);
+		int diffLen = lenA - lenB;
+		if(diffLen < 0) {
+			Node temp = headA;
+			headA = headB;
+			headB = temp;
+		}
+		
+		for(int i = 0; i < Math.abs(diffLen); i++) {
+			headA = headA.next;
+		}
+		
+		while(headA!=null && headB!=null) {
+			if(headA == headB) 
+				return headA.data;
+			
+			headA = headA.next;
+			headB = headB.next;
+		}
+		//Not found!!!
+		return -1;
+	}
+
+	protected static int length(Node head) {
+		int len = 0;
+		while(head != null) {
+			len++;
+			head = head.next;
+		}
+		return len;
+	}
 }
