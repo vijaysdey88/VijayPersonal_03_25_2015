@@ -1,7 +1,5 @@
 package hackerrank;
 
-import hackerrank.DoublyLinkedList.Node;
-
 public class DoublyLinkedList {
 
 	Node head;

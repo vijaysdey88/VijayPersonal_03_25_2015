@@ -1,12 +1,11 @@
 package hackerrank;
 
+
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.IntStream;
-
-import org.junit.Assert;
-import org.junit.Test;
 
 public class ServiceLane {
 
@@ -39,13 +38,13 @@ public class ServiceLane {
 		scanner.close();
 	}
 
-	@Test
-	public void testForSampleInput() {
-		int[] widths = new int[]{2, 3, 1, 2, 3, 2, 3, 3};
-		Assert.assertEquals(1, findLargestVehicle(widths, 0, 3));
-		Assert.assertEquals(2, findLargestVehicle(widths, 4, 6));
-		Assert.assertEquals(3, findLargestVehicle(widths, 6, 7));
-	}
+//	@Test
+//	public void testForSampleInput() {
+//		int[] widths = new int[]{2, 3, 1, 2, 3, 2, 3, 3};
+//		Assert.assertEquals(1, findLargestVehicle(widths, 0, 3));
+//		Assert.assertEquals(2, findLargestVehicle(widths, 4, 6));
+//		Assert.assertEquals(3, findLargestVehicle(widths, 6, 7));
+//	}
 	
 	private static int findLargestVehicle(int[] widths, int startLane, int endLane) {
 		int largest = 3; //Car

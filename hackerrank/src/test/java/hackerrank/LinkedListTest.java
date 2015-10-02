@@ -2,14 +2,12 @@ package hackerrank;
 
 
 import hackerrank.LinkedList.Node;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.stream.IntStream;
-
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
 
 public class LinkedListTest {
 	private LinkedList list = new LinkedList();

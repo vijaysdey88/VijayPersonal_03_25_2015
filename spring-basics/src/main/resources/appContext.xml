@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<context:annotation-config />
+	
+	<bean id="helloWorld" class="com.study.beans.HelloWorldBean"
+		init-method="init" destroy-method="destroy">
+		<property name="message" value="I have started learning spring!!!"></property>
+		<property name="strList">
+			<list>
+				<value>Vijay</value>
+				<value>1</value>
+				<!-- <ref bean="executorBean"></ref> -->
+			</list>
+		</property>
+	</bean>
+
+	<bean id="selfInitDestroyingBean" class="com.study.beans.SelfInitDestroyingBean">
+		<property name="hwb" ref="helloWorld"></property>
+	</bean>
+
+	<bean id="simpleBeanPostProcessor" class="com.study.beans.SimpleBeanPostProcessor"></bean>
+
+	<bean id="serviceBean" class="com.study.beans.ServiceBean">
+	</bean>
+	
+	<bean id="executorBean" class="com.study.beans.ExecutorBean" autowire="byName">
+	</bean>
+</beans>

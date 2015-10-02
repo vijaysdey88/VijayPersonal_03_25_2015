@@ -1,14 +1,11 @@
 package hackerrank;
 
+import hackerrank.DoublyLinkedList.Node;
+import org.junit.Assert;
+import org.junit.Test;
+
 import java.util.Arrays;
 import java.util.Random;
-import java.util.stream.IntStream;
-
-import hackerrank.DoublyLinkedList.Node;
-
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
 
 public class DoublyLinkedListTest {
 	
